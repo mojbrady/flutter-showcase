@@ -7,7 +7,7 @@ A simple business card, showcase flutter application.
 After checkout run the command:
 > flutter create .
 
-## Other Info
+## Other Info about Flutter
 
 This project is a starting point for a Flutter application.
 
