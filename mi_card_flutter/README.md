@@ -1,8 +1,13 @@
 # micardflutter
 
-A new Flutter application.
+A simple business card, showcase flutter application.
 
 ## Getting Started
+
+After checkout run the command:
+> flutter create .
+
+## Other Info
 
 This project is a starting point for a Flutter application.
 
