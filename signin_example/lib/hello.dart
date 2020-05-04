@@ -9,7 +9,7 @@ class HelloScreen extends StatelessWidget {
         title: Text('Hello Screen'),
       ),
       body: Center(
-        child: Text('Welcome!', style: Theme.of(context).textTheme.headline3),
+        child: Text('HELLO!', style: Theme.of(context).textTheme.headline1),
       ),
       drawer: Text('Drawer'),
       floatingActionButton: FloatingActionButton(
