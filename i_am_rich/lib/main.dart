@@ -7,6 +7,7 @@ var routes = {
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
 //    routes: routes,
       home: IAmRichScreen(),
     ),
