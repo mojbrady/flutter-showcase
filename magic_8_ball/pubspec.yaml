@@ -1,5 +1,5 @@
 name: magic_8_ball
-description: A new Flutter application.
+description: A Magic 8 Ball
 
 version: 1.0.0+1
 
@@ -17,8 +17,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
-
   assets:
     - images/
