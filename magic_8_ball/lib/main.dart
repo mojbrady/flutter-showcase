@@ -15,10 +15,10 @@ class Magic8BallApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueGrey,
         appBar: AppBar(
           title: Text('Ask Me Anything'),
-          backgroundColor: Colors.blue.shade900,
+          backgroundColor: Colors.blueGrey.shade900,
         ),
         body: Center(
             child: Padding(
