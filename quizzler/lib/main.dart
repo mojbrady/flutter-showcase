@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizzler/quiz_master.dart';
+
+QuizMaster quizMaster = QuizMaster();
 
 void main() {
   runApp(QuizzlerApp());
@@ -9,6 +12,7 @@ class QuizzlerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quizzler',
       home: Scaffold(
         backgroundColor: Colors.grey.shade600,
@@ -29,7 +33,15 @@ class QuizzPage extends StatefulWidget {
 }
 
 class _QuizzPageState extends State<QuizzPage> {
-  String text = 'This is where the question will go';
+  List<Widget> scoreKeeper = [];
+
+  void checkScore(bool answer) {
+    setState(() {
+      scoreKeeper.add(
+          (quizMaster.checkAnswer(answer)) ? createCheck() : createClose());
+    });
+    quizMaster.nextQuestion();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +52,45 @@ class _QuizzPageState extends State<QuizzPage> {
           flex: 5,
           child: Center(
             child: createText(
-              text,
+              quizMaster.getQuestion(),
               25,
             ),
           ),
         ),
         createButton(
-            text: 'True',
-            color: Colors.green,
-            onPressed: () {
-              print('trueeeee');
-            }),
+          text: 'True',
+          color: Colors.green,
+          onPressed: () => checkScore(true),
+        ),
         createButton(
-            text: 'False',
-            color: Colors.red,
-            onPressed: () {
-              print('falseeeee');
-            })
+          text: 'False',
+          color: Colors.red,
+          onPressed: () => checkScore(false),
+        ),
+        Row(
+          children: scoreKeeper,
+        )
       ],
+    );
+  }
+
+  Widget createCheck() {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Icon(
+        Icons.check,
+        color: Colors.green,
+      ),
+    );
+  }
+
+  Widget createClose() {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Icon(
+        Icons.close,
+        color: Colors.red,
+      ),
     );
   }
 
