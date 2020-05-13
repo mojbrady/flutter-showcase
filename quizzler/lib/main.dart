@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_master.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizMaster quizMaster = QuizMaster();
 
@@ -34,13 +35,22 @@ class QuizzPage extends StatefulWidget {
 
 class _QuizzPageState extends State<QuizzPage> {
   List<Widget> scoreKeeper = [];
+  int _score = 0;
 
   void checkScore(bool answer) {
     setState(() {
-      scoreKeeper.add(
-          (quizMaster.checkAnswer(answer)) ? createCheck() : createClose());
+      if (quizMaster.checkAnswer(answer)) {
+        scoreKeeper.add(createCheck());
+        _score++;
+      } else {
+        scoreKeeper.add(createClose());
+      }
+      if (!quizMaster.nextQuestion()) {
+        createAlert(_score, scoreKeeper.length, context).show();
+        scoreKeeper = [];
+        _score = 0;
+      }
     });
-    quizMaster.nextQuestion();
   }
 
   @override
@@ -74,9 +84,28 @@ class _QuizzPageState extends State<QuizzPage> {
     );
   }
 
+  Alert createAlert(int correct, int total, BuildContext context) {
+    return Alert(
+      context: context,
+      type: AlertType.info,
+      title: "You have successfully completed the quiz.",
+      desc: "Your score is: $correct/$total",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    );
+  }
+
   Widget createCheck() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(2.0),
       child: Icon(
         Icons.check,
         color: Colors.green,
@@ -86,7 +115,7 @@ class _QuizzPageState extends State<QuizzPage> {
 
   Widget createClose() {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(2.0),
       child: Icon(
         Icons.close,
         color: Colors.red,

@@ -28,7 +28,6 @@ class QuizMaster {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
-
   int _index = 0;
 
   bool checkAnswer(bool answer) {
@@ -39,9 +38,13 @@ class QuizMaster {
     return _questions[_index].question;
   }
 
-  void nextQuestion() {
+  bool nextQuestion() {
     if (_index < _questions.length - 1) {
       _index++;
+      return true;
+    } else {
+      _index = 0;
     }
+    return false;
   }
 }
