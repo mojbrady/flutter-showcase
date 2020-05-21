@@ -1,6 +1,9 @@
+import 'package:bmicalculator/labeled_icon_button.dart';
 import 'package:bmicalculator/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmicalculator/card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,19 +21,27 @@ class _InputPageState extends State<InputPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Card(
+              Cardd(
                 colour: cardColourActive,
                 height: 170,
+                child: LabeledIconButton(
+                  icon: FontAwesomeIcons.male,
+                  label: 'MALE',
+                ),
               ),
-              Card(
+              Cardd(
                 colour: cardColour,
                 height: 170,
+                child: LabeledIconButton(
+                  icon: FontAwesomeIcons.female,
+                  label: 'FEMALE',
+                ),
               ),
             ],
           ),
 //          Row(
 //            children: <Widget>[
-          Card(
+          Cardd(
             colour: cardColour,
             height: 170,
           ),
@@ -38,11 +49,11 @@ class _InputPageState extends State<InputPage> {
 //          ),
           Row(
             children: <Widget>[
-              Card(
+              Cardd(
                 colour: cardColour,
                 height: 170,
               ),
-              Card(
+              Cardd(
                 colour: cardColour,
                 height: 170,
               ),
@@ -54,29 +65,6 @@ class _InputPageState extends State<InputPage> {
             height: 80,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class Card extends StatelessWidget {
-  final double height;
-  final Color colour;
-  final Widget child;
-
-  Card({this.colour, this.height, this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: height,
-        margin: EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: colour,
-        ),
-        child: child,
       ),
     );
   }

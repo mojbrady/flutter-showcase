@@ -20,3 +20,8 @@ final ThemeData themes = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: backgroundColour,
   accentColor: highlightColour,
 );
+
+const labelTextStyle = TextStyle(
+  fontSize: 18,
+  color: Color(0xFF8D8E98),
+);
