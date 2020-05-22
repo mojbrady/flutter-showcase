@@ -9,17 +9,19 @@ var routes = {
   '/moo': (context) => InputPage(),
 };
 
+var themes = ThemeData.dark().copyWith(
+  primaryColor: kBackgroundColour,
+  scaffoldBackgroundColor: kBackgroundColour,
+  accentColor: kAccentColor,
+);
+
 class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BMI Calculator',
-      theme: ThemeData.dark().copyWith(
-        primaryColor: kBackgroundColour,
-        scaffoldBackgroundColor: kBackgroundColour,
-        accentColor: kAccentColor,
-      ),
+      theme: themes,
       routes: routes,
     );
   }

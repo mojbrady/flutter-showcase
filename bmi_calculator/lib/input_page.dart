@@ -3,7 +3,7 @@ import 'package:bmicalculator/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmicalculator/cardd.dart';
+import 'package:bmicalculator/tile.dart';
 
 enum Gender {
   MALE,
@@ -17,10 +17,17 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  double selectedHeight = 150;
 
   void updateCardColours(Gender gender) {
     setState(() {
       this.selectedGender = gender;
+    });
+  }
+
+  void updateHeight(double value) {
+    setState(() {
+      this.selectedHeight = value;
     });
   }
 
@@ -31,10 +38,11 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Row(
             children: <Widget>[
-              Cardd(
+              Tile(
                 onClick: () => updateCardColours(Gender.MALE),
                 colour: (selectedGender == Gender.MALE)
                     ? kActiveCardColour
@@ -45,7 +53,7 @@ class _InputPageState extends State<InputPage> {
                   label: 'MALE',
                 ),
               ),
-              Cardd(
+              Tile(
                 onClick: () => updateCardColours(Gender.FEMALE),
                 colour: (selectedGender == Gender.FEMALE)
                     ? kActiveCardColour
@@ -58,22 +66,52 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           ),
-//          Row(
-//            children: <Widget>[
-          Cardd(
+          Tile(
             colour: kActiveCardColour,
             height: 170,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  'HEIGHT',
+                  style: kLabelTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: <Widget>[
+                    Text(
+                      '$selectedHeight',
+                      style: kNumberTextStyle,
+                    ),
+                    SizedBox(
+                      width: 7,
+                    ),
+                    Text(
+                      'cm',
+                      style: kLabelTextStyle,
+                    ),
+                  ],
+                ),
+                Slider(
+                  onChanged: (value) => updateHeight(value),
+                  min: 50,
+                  max: 250,
+                  value: selectedHeight,
+                  activeColor: Colors.red,
+                )
+              ],
+            ),
           ),
-
-//            ],
-//          ),
           Row(
             children: <Widget>[
-              Cardd(
+              Tile(
                 colour: kActiveCardColour,
                 height: 170,
               ),
-              Cardd(
+              Tile(
                 colour: kActiveCardColour,
                 height: 170,
               ),

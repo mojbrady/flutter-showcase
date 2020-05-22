@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Cardd extends StatelessWidget {
+class Tile extends StatelessWidget {
   final double height;
   final Color colour;
   final Widget child;
   final Function onClick;
 
-  Cardd({this.colour, this.height, this.child, this.onClick});
+  Tile({this.colour, this.height, this.child, this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,7 @@ class Cardd extends StatelessWidget {
         onTap: onClick,
         child: Container(
           height: height,
+          width: double.infinity,
           margin: EdgeInsets.all(15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
